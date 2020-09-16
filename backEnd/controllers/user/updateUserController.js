@@ -5,7 +5,6 @@
 
 const userModel = require('../../model/userModel');
 
-
 exports.updateUser = (req, res) => {
     userModel.find({email: req.body.email}, (err, users)=> {
         if(err) {

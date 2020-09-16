@@ -2,7 +2,6 @@ const joi = require('joi');
 
 const providerProfileUpdateSchema = joi.object().keys({
     fullName: joi.string().required().exist().min(3),
-    password: joi.string().exist().required().regex(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/),
     email: joi.string().exist().required().email(),
     mobileNumber: joi.string().exist().required(),
     Fees: joi.string().exist().required(),
@@ -11,7 +10,7 @@ const providerProfileUpdateSchema = joi.object().keys({
     ALine1: joi.string(),
     ALine2: joi.string(),
     PinCode: joi.string(),
-    
+    partnerId: joi.string().exist().required(),
     OrganizationName: joi.string().required().exist(),
     OrganizationAddress: joi.string().required().exist(),
     OrganizationRegNumber: joi.string().required().exist(),

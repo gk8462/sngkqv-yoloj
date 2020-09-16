@@ -32,6 +32,7 @@ import Form from 'react-bootstrap/Form';
 
 import HeaderContainer from '../../containers/headerContainer';
 import Background from '../../assets/img/newbg.jpg';
+import axios from 'axios';
 const HtmlTooltip = withStyles((theme) => ({
     tooltip: {
       backgroundColor: '#f5f5f9',
@@ -51,9 +52,94 @@ export default class ProviderDashboard extends React.Component {
         super(props);
         this.state = {
             providerData:[],
-            updatedData:[]
+            updatedData:[],
+            disableEmail: true,
+            disableName : true,
+            fullName:''
             
         }
+    }
+
+    updateProfile = (e) =>{
+
+        e.preventDefault()
+
+        var body = JSON.stringify({
+            //  fullName:"Akanksha Kashyap", //providerData.fullName,
+              fullName:this.state.providerData.fullName,
+              partnerId: localStorage.getItem("providerId"),
+            //   password: this.state.providerData.password,
+              email: this.state.providerData.email,
+              mobileNumber: this.state.providerData.mobileNumber,
+              Fees:this.state.providerData.Fees,
+              country: this.state.providerData.country,
+              City:this.state.providerData.City,
+              ALine1:this.state.providerData.ALine1,
+              ALine2:this.state.providerData.ALine2,
+              PinCode:this.state.providerData.PinCode,
+              OrganizationName: this.state.providerData.OrganizationName,
+              OrganizationAddress: this.state.providerData.OrganizationAddress,
+              OrganizationRegNumber: this.state.providerData.OrganizationRegNumber,
+              idType: this.state.providerData.idType,
+              busCheckedForAPI: this.state.providerData.busCheckedForAPI,
+              indCheckedForAPI:this.state.providerData.indCheckedForAPI,
+              servicesOffered: this.state.providerData.servicesOffered,
+              providerIdentityImg: this.state.providerData.providerIdentityImg,
+              partnerType: this.state.providerData.partnerType,
+              role: 2
+          })
+
+        axios.post('http://localhost:4000/api/auth/provider/update', body, {
+            headers: {
+                'Content-Type': 'application/json',
+            }}).then(res => {
+              console.log(res);
+             
+              
+            }).catch(err => {
+              console.log(err);
+            })
+
+        // fetch('http://localhost:4000/api/auth/provider/update', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        // }).then(res=> {
+
+        //     console.log(res);
+        //     if(res.status === 200) {
+        //         console.log("Resssponse is ----",res)
+        //         return res.json().then(res=> {
+        //             this.setState({
+        //                 updatedData:res
+        //             })
+        //         })
+        //     } 
+        // }).catch(err=> {
+        //     alert(err)
+        //    console.log(err);
+        // })
+
+    }
+
+    change = (e) =>{
+
+        const items  = this.state.providerData;
+        
+
+        if(e.target.name==='name'){
+            items.fullName = e.target.value;
+            this.setState({providerData: items})
+            console.log(e.target.name)
+        }
+
+        if(e.target.name==='email'){
+            items.email = e.target.value;
+            this.setState({providerData: items})
+            console.log(e.target.name)
+        }
+        
     }
 
     componentDidMount() {
@@ -63,63 +149,14 @@ export default class ProviderDashboard extends React.Component {
          this.setState({
            providerData:JSON.parse(partnerdata)
        })
-   
-       fetch('/api/auth/provider/update', {
-   
-           method: 'PUT',
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           body: JSON.stringify({
-               fullName:"Akanksha Kashyap", //providerData.fullName,
-               password: this.state.providerData.password,
-               email: this.state.providerData.email,
-               mobileNumber: this.state.providerData.mobileNumber,
-               Fees:this.state.providerData.Fees,
-               country: this.state.providerData.country,
-               City:this.state.providerData.City,
-               ALine1:this.state.providerData.ALine1,
-               ALine2:this.state.providerData.ALine2,
-               PinCode:this.state.providerData.PinCode,
-               OrganizationName: this.state.providerData.OrganizationName,
-               OrganizationAddress: this.state.providerData.OrganizationAddress,
-               OrganizationRegNumber: this.state.providerData.OrganizationRegNumber,
-               idType: this.state.providerData.idType,
-               busCheckedForAPI: this.state.providerData.busCheckedForAPI,
-               indCheckedForAPI:this.state.providerData.indCheckedForAPI,
-               servicesOffered: this.state.providerData.servicesOffered,
-               providerIdentityImg: this.state.providerData.providerIdentityImg,
-               partnerType: this.state.providerData.partnerType,
-               role: 4
-           })
-       }).then(res=> {
-           if(res.status === 200) {
-               console.log("Resssponse is ----",res)
-               return res.json().then(res=> {
-                   this.setState({
-                       updatedData:res
-                   })
-                 
-       
-   
-               })
-           } 
-       }).catch(err=> {
-          console.log(err);
-       })
-   
-   
-       }
+   }
 
 
-
-    
 
 
     render() {
 
-        return(           
-
+        return(
             <div style={{width: '100%', marginTop: '100px'}}>
 
             <HeaderContainer />
@@ -147,11 +184,122 @@ export default class ProviderDashboard extends React.Component {
                 style={{width: '50%'}}
                 />
 
-                <Button color="secondary" onClick={() => { this.setState({ disableName: false })}}>Edit</Button>
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
 
-                <br/><br/>
+                <br/>
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.mobileNumber}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
 
-                <Button variant="contained" type="submit" color="primary" disabled={this.state.updateDetails} onClick={()=>{console.log("user  -->",this.state.userDetails)}} >Update</Button>
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.Fees}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.country}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.City}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+                
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.PinCode}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+                
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.OrganizationName}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+                
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.OrganizationAddress}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.OrganizationRegNumber}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+
+                <Form.Control type="email"
+                name='email'
+                value={this.state.providerData.idType}
+                disabled={this.state.disableEmail}
+                onChange={(e) => this.change(e)}
+                style={{width: '50%'}}
+                />
+
+                <Button color="secondary" onClick={() => { this.setState({ disableEmail: false })}}>Edit</Button>
+
+                <br/>
+                
+                
+                
+                <br/>
+
+                <Button variant="contained" type="submit" color="primary" disabled={this.state.updateDetails} onClick={()=>{console.log("user  -->",this.state.providerData)}} >Update</Button>
 
             </Form>
 
