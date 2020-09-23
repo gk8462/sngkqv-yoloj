@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderContainer from '../../containers/headerContainer';
 import './ProviderRegister.css';
-import { default as RSelect } from 'react-select';
+import {default as RSelect} from 'react-select';
 import makeAnimated from 'react-select/animated';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import CheckboxTree from 'react-checkbox-tree';
@@ -166,7 +166,6 @@ export default class ProviderRegister extends React.Component {
             ALine1: '',
             ALine2: '',
             PinCode: '',
-
             // countries: [
             //     { id: 1, name: 'Australia', hasChild: true, expanded: true },
             //     { id: 2, pid: 1, name: 'New South Wales' },
@@ -600,7 +599,6 @@ export default class ProviderRegister extends React.Component {
     }
 
     multiSelectGetValues = (...vv) => {
-
         this.setState({
             selectedBusinesses: vv[0]
         });
@@ -701,7 +699,6 @@ export default class ProviderRegister extends React.Component {
             />
         );
     }
-
     indTreeCheck = () => {
         return (
             <CheckboxTree
@@ -903,7 +900,6 @@ export default class ProviderRegister extends React.Component {
         if (this.state.activeStep === 0) {
             return (
                 <div class="form_container">
-
 
                     <Container maxWidth="sm" style={{ marginBottom: 30 }}>
                         <form noValidate autoCapitalize="off">

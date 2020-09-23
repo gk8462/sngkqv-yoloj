@@ -26,6 +26,10 @@ var app = require('express')(),
     provider = require('./routers/provider'),
     user = require('./routers/user');
 
+    const swaggerUi = require('swagger-ui-express');
+    const specs = require('./swagger');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 //Middlewares
 app.use(cors());
 mongoDbConfig.connect();

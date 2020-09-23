@@ -186,8 +186,6 @@ export default class ProviderProfile extends React.Component {
    
             return(
          
-            
-
                 <div style={{width: '100%', marginTop: '100px'}}>
 
                 <HeaderContainer />
@@ -234,7 +232,7 @@ export default class ProviderProfile extends React.Component {
                                 {this.state.providerData.OrganizationAddress },&nbsp;
                                 {this.state.providerData.country } <br/>
                                 <CreditCardOutlinedIcon style={{fontSize: '12px', color: '#666666'}}/>&nbsp;
-                                Fees : {this.state.providerData.Fees } 
+                                Fees : {this.state.providerData.Fees }
                             </Typography>
 
                             <Typography  color="text" variant="caption" style={{float: 'right'}}>

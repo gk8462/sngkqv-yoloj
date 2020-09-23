@@ -79,7 +79,10 @@ export default class Register extends React.Component {
     navigateToLogin = () => {
         history.push('/login');
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
 
     signUp = (e) => {
         e.preventDefault();
@@ -92,7 +95,10 @@ export default class Register extends React.Component {
                 })
             } else{ 
                 history.push('/');
+<<<<<<< HEAD
              
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
             }
         })
     }
@@ -101,8 +107,13 @@ export default class Register extends React.Component {
         const { name, value } = e.target;
         let errors = this.state.errors;
         switch(name) {
+<<<<<<< HEAD
             case 'name':    
                 errors.name = value.match(/^[A-Za-z]+/)? '':'invalid name';
+=======
+            case 'name':
+                errors.name = value.length < 3 ? 'Name should be more than 3 characters long': null;
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                 break;
             case 'email':
                 errors.email = value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/) ? '' : 'Invalid Email Address';
@@ -127,6 +138,7 @@ export default class Register extends React.Component {
     render() {
         return(
             <div>
+<<<<<<< HEAD
 
                 <HeaderContainer />
 
@@ -174,6 +186,14 @@ export default class Register extends React.Component {
 
 
                 
+=======
+                <HeaderContainer />
+                <div style={{backgroundColor:'#20ABC7', paddingTop:200, height:'100%', width:'100%', position: 'absolute',top: 0, left: 0}} className="rootCont">
+                    <Grid container style={{justifyContent: 'center'}}>
+                        <Grid item  style={{marginLeft:100}}>
+                        <Card>
+                            <CardHeader title="It seems you are new here! Register to Continue" />
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                             <CardContent>
                                 <form noValidate autoCapitalize="off" onSubmit={(e) => this.signUp(e)}>
                                     <TextField 
@@ -182,72 +202,102 @@ export default class Register extends React.Component {
                                         name="name"
                                         fullWidth
                                         type="text"
+<<<<<<< HEAD
                                         size="small"
                                         variant="outlined"
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                         error={this.state.errors.name}
                                         helperText={this.state.errors.name}
                                         autoFocus
                                         required
                                         onChange={(e)=> this.change(e)}
+<<<<<<< HEAD
                                         inputProps={{style: {fontSize: 12}}}
                                         style={{marginBottom: 15,width: '80%',borderRadius: '1px'}}
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                     />
                                     <TextField
                                         id="email"
                                         label="Enter your email"
                                         name="email"
                                         fullWidth
+<<<<<<< HEAD
                                         size="small"
                                         variant="outlined"
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                         type="email"
                                         error={this.state.errors.email}
                                         helperText={this.state.errors.email}
                                         autoFocus
                                         required
                                         onChange={(e)=> this.change(e)}
+<<<<<<< HEAD
                                         inputProps={{style: {fontSize: 12}}}
                                         style={{marginBottom: 15,width: '80%',borderRadius: '1px'}}
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                     />
                                     <TextField
                                         id="password"
                                         label="Enter your password"
                                         name="password"
                                         fullWidth
+<<<<<<< HEAD
                                         size="small"
                                         variant="outlined"
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                         type="password"
                                         error={this.state.errors.password}
                                         helperText={this.state.errors.password}
                                         autoFocus
                                         required
                                         onChange={(e)=> this.change(e)}
+<<<<<<< HEAD
                                         inputProps={{style: {fontSize: 12}}}
                                         style={{marginBottom: 15,width: '80%',borderRadius: '1px'}}
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                     />
                                     <TextField 
                                         id="confirm_password"
                                         label="Re-Enter your password"
                                         name="confirm_password"
                                         fullWidth
+<<<<<<< HEAD
                                         size="small"
                                         variant="outlined"
+=======
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                         type="password"
                                         error={this.state.errors.confirm_password}
                                         helperText={this.state.errors.confirm_password}
                                         autoFocus
                                         required
                                         onChange={(e)=> this.change(e)}
+<<<<<<< HEAD
                                         inputProps={{style: {fontSize: 12}}}
                                         style={{marginBottom: 15,width: '80%',borderRadius: '1px'}}
                                     />
 
                                     <div>
+=======
+                                    />
+                                    <Grid item xs={4} style={{display:'flex'}}>
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                         <Select
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
                                             value={this.state.country_code}
+<<<<<<< HEAD
                                             variant="outlined"
                                             style={{marginBottom: 15,width: '20%',borderRadius: '1px'}}
+=======
+                                            style={{minWidth:150}}
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                         >
                                             {
                                                 (this.state.countries && this.state.countries.length) ? this.state.countries.map((item, index)=>{
@@ -257,16 +307,23 @@ export default class Register extends React.Component {
                                         </Select>
                                         <TextField 
                                             id="phone_number"
+<<<<<<< HEAD
                                             label="Phone number"
                                             name="phone_number"
                                             fullWidth
                                             variant="outlined"
+=======
+                                            label="Enter your Phone number"
+                                            name="phone_number"
+                                            fullWidth
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                                             type="number"
                                             className="phoneNumber"
                                             error={this.state.errors.phone_number}
                                             helperText={this.state.errors.phone_number}
                                             autoFocus
                                             required
+<<<<<<< HEAD
                                             style={{marginBottom: 15,width: '55%',marginLeft:'5%',borderRadius: '1px'}}
                                             onChange={(e)=> this.change(e)}
                                         />
@@ -304,6 +361,24 @@ export default class Register extends React.Component {
 
 
 
+=======
+                                            style={{minWidth:800}}
+                                            onChange={(e)=> this.change(e)}
+                                        />
+                                    </Grid>
+                                    <br />
+                                    <Button variant="contained" type="submit" color="primary">Create a Free Account</Button>
+                                </form>
+                            </CardContent>
+                            <CardActions>
+                                <label>Already have an account ? </label>
+                                <Link href="#" onClick={this.navigateToLogin}>Link</Link>
+                            </CardActions>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </div>
+>>>>>>> 5610d71902f4f9a6736dd67a0cfb0ae6cbf1d42a
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',

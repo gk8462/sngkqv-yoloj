@@ -94,15 +94,15 @@ export default class ProviderLogin extends React.Component {
                 })
             } else {
                 console.log("provider profile",store.getState().providerLogin.success.partnerData)
-                window.localStorage.setItem('token', store.getState().providerLogin.success.token);
+               // window.localStorage.setItem('token', store.getState().providerLogin.success.token);
                 //setName(store.getState().providerLogin.success[0].name);
-                window.localStorage.setItem('providerProfile', true);
+               // window.localStorage.setItem('providerProfile', true);
                 //window.localStorage.setItem('setemail',store.getState().providerLogin.success.email);
-                window.localStorage.setItem('providerId',store.getState().providerLogin.success.providerId);
+               // window.localStorage.setItem('providerId',store.getState().providerLogin.success.providerId);
                 //console.log("provider id  is-----",store.getState().providerLogin.success.providerId);
-                window.localStorage.setItem('providerData',JSON.stringify(store.getState().providerLogin.success.partnerData));
+                //window.localStorage.setItem('providerData',JSON.stringify(store.getState().providerLogin.success.partnerData));
 
-                history.push('/');
+                history.push('/provider/dashboard');
             }
         })
     }
